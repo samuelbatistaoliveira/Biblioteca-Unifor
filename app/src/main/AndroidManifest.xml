@@ -37,22 +37,22 @@
             android:name=".login.ChatbotActivity"
             android:exported="false" />
 
-        <!-- Home -->
         <activity
             android:name=".home_aluno.HomeActivity"
             android:exported="false" />
 
-        <!-- Detalhes -->
         <activity
             android:name=".detalhe_livro.BookDetailActivity"
             android:exported="false" />
 
-        <!-- Aluguel -->
         <activity
             android:name=".aluguel_livros.AluguelActivity"
             android:exported="false" />
 
-        <!-- MainActivity -->
+        <activity
+            android:name=".admin.HomeAdminActivity"
+            android:exported="false" />
+
         <activity
             android:name=".MainActivity"
             android:exported="false" />

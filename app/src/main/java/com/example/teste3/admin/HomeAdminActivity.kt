@@ -54,6 +54,8 @@ class HomeAdminActivity : AppCompatActivity() {
             navProfileBg    = binding.bottomNav.navProfileBg,
             activeItem      = BottomNavHelper.NavItem.HOME
         )
+        binding.bottomNav.navChat.setOnClickListener { }
+        binding.bottomNav.navHome.setOnClickListener { }
     }
 
     private fun loadBooks(books: List<Book>) {
