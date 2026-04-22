@@ -8,6 +8,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import coil.load
+import com.example.teste3.BookRepository
 import com.example.teste3.BotaoNav.BottomNavHelper
 import com.example.teste3.R
 import com.example.teste3.databinding.ActivityHomeBinding
@@ -39,7 +40,7 @@ class HomeActivity : AppCompatActivity() {
         }
 
         setupBottomNav()
-        loadBooks(sampleBooks())
+        loadBooks(BookRepository.getAll())
     }
 
     private fun setupBottomNav() {
@@ -98,70 +99,4 @@ class HomeActivity : AppCompatActivity() {
             grid.addView(itemView)
         }
     }
-
-    private fun sampleBooks(): List<Book> = listOf(
-        Book(
-            id = 1,
-            title = "Entendendo Algoritmos",
-            author = "Aditya Y. Bhargava",
-            coverUrl = "android.resource://com.example.teste3/drawable/capa_entendendo_algoritmos",
-            year = "2017", genre = "Tecnologia"
-        ),
-        Book(
-            id = 2,
-            title = "Pai Rico Pai Pobre",
-            author = "Robert T. Kiyosaki",
-            coverUrl = "android.resource://com.example.teste3/drawable/capa_pai_rico_pai_pobre",
-            year = "2000", genre = "Finanças"
-        ),
-        Book(
-            id = 3,
-            title = "É Assim Que Acaba",
-            author = "Colleen Hoover",
-            coverUrl = "android.resource://com.example.teste3/drawable/capa_assim_que_acaba",
-            year = "2016", genre = "Romance"
-        ),
-        Book(
-            id = 4,
-            title = "Netter Atlas de Anatomia",
-            author = "Frank H. Netter",
-            coverUrl = "android.resource://com.example.teste3/drawable/capa_anatomia_humana",
-            year = "2015", genre = "Medicina"
-        ),
-        Book(
-            id = 5,
-            title = "Introdução à Nutrição",
-            author = "Vários Autores",
-            coverUrl = "android.resource://com.example.teste3/drawable/capa_introducao_a_nutricao",
-            year = "2018", genre = "Nutrição"
-        ),
-        Book(
-            id = 6,
-            title = "Fisiologia Humana",
-            author = "Dee Unglaub Silverthorn",
-            coverUrl = "android.resource://com.example.teste3/drawable/capa_fisiologia_humana",
-            year = "2017", genre = "Medicina"
-        ),
-        Book(
-            id = 7,
-            title = "Fundamentos de Enfermagem",
-            author = "Patricia A. Potter",
-            coverUrl = "android.resource://com.example.teste3/drawable/capa_fundamentos_de_enfermagem",
-            year = "2018", genre = "Enfermagem"
-        ),
-        Book(
-            id = 8,
-            title = "Código Limpo",
-            author = "Robert C. Martin",
-            coverUrl = "https://covers.openlibrary.org/b/isbn/9788576082675-L.jpg",
-            year = "2009", genre = "Tecnologia"
-        ),
-        Book(
-            id = 9,
-            title = "Django Essencial",
-            author = "Vários Autores",
-            coverUrl = "android.resource://com.example.teste3/drawable/capa_django_essencial",
-            year = "2020", genre = "Tecnologia"
-        ),
-    )
 }
