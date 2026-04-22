@@ -8,10 +8,10 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import coil.load
+import com.example.teste3.BookRepository
 import com.example.teste3.BotaoNav.BottomNavHelper
 import com.example.teste3.R
 import com.example.teste3.databinding.ActivityHomeAdminBinding
-import com.example.teste3.detalhe_livro.BookDetailActivity
 import com.example.teste3.home_aluno.Book
 
 class HomeAdminActivity : AppCompatActivity() {
@@ -29,14 +29,17 @@ class HomeAdminActivity : AppCompatActivity() {
             Toast.makeText(this, "Pesquisar...", Toast.LENGTH_SHORT).show()
         }
 
-        // Botão + para adicionar livro
         binding.fabAddBook.setOnClickListener {
-            // TODO: navegar para AdicionarLivroActivity quando criada
-            Toast.makeText(this, "Adicionar livro", Toast.LENGTH_SHORT).show()
+            startActivity(Intent(this, CadastroLivroActivity::class.java))
         }
 
         setupBottomNav()
-        loadBooks(sampleBooks())
+        loadBooks(BookRepository.getAll())
+    }
+
+    override fun onResume() {
+        super.onResume()
+        loadBooks(BookRepository.getAll())
     }
 
     private fun setupBottomNav() {
@@ -83,7 +86,7 @@ class HomeAdminActivity : AppCompatActivity() {
             itemView.findViewById<TextView>(R.id.tvBookName).text = book.title
 
             itemView.setOnClickListener {
-                val intent = Intent(this, BookDetailActivity::class.java).apply {
+                val intent = Intent(this, DetalhesAdminActivity::class.java).apply {
                     putExtra("book_title",  book.title)
                     putExtra("book_author", book.author)
                     putExtra("book_cover",  book.coverUrl)
@@ -97,34 +100,4 @@ class HomeAdminActivity : AppCompatActivity() {
             grid.addView(itemView)
         }
     }
-
-    private fun sampleBooks(): List<Book> = listOf(
-        Book(1, "Entendendo Algoritmos", "Aditya Y. Bhargava",
-            "android.resource://com.example.teste3/drawable/capa_entendendo_algoritmos",
-            year = "2017", genre = "Tecnologia"),
-        Book(2, "Pai Rico Pai Pobre", "Robert T. Kiyosaki",
-            "android.resource://com.example.teste3/drawable/capa_pai_rico_pai_pobre",
-            year = "2000", genre = "Finanças"),
-        Book(3, "É Assim Que Acaba", "Colleen Hoover",
-            "android.resource://com.example.teste3/drawable/capa_assim_que_acaba",
-            year = "2016", genre = "Romance"),
-        Book(4, "Netter Atlas de Anatomia", "Frank H. Netter",
-            "android.resource://com.example.teste3/drawable/capa_anatomia_humana",
-            year = "2015", genre = "Medicina"),
-        Book(5, "Introdução à Nutrição", "Vários Autores",
-            "android.resource://com.example.teste3/drawable/capa_introducao_a_nutricao",
-            year = "2018", genre = "Nutrição"),
-        Book(6, "Fisiologia Humana", "Dee Unglaub Silverthorn",
-            "android.resource://com.example.teste3/drawable/capa_fisiologia_humana",
-            year = "2017", genre = "Medicina"),
-        Book(7, "Fundamentos de Enfermagem", "Patricia A. Potter",
-            "android.resource://com.example.teste3/drawable/capa_fundamentos_de_enfermagem",
-            year = "2018", genre = "Enfermagem"),
-        Book(8, "Código Limpo", "Robert C. Martin",
-            "https://covers.openlibrary.org/b/isbn/9788576082675-L.jpg",
-            year = "2009", genre = "Tecnologia"),
-        Book(9, "Django Essencial", "Vários Autores",
-            "android.resource://com.example.teste3/drawable/capa_django_essencial",
-            year = "2020", genre = "Tecnologia"),
-    )
 }
