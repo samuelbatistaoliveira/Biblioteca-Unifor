@@ -64,6 +64,10 @@
             android:name=".admin.CadastroLivroActivity"
             android:exported="false" />
 
+        <activity
+            android:name=".admin.EditarLivroActivity"
+            android:exported="false" />
+
     </application>
 
 </manifest>

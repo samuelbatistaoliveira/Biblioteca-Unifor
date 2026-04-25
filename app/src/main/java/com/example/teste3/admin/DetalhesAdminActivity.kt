@@ -20,7 +20,6 @@ class DetalhesAdminActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         binding.toolbar.setNavigationOnClickListener { finish() }
 
-        // Recebe os dados do livro
         val title  = intent.getStringExtra("book_title")  ?: ""
         val author = intent.getStringExtra("book_author") ?: ""
         val cover  = intent.getStringExtra("book_cover")  ?: ""
@@ -28,7 +27,6 @@ class DetalhesAdminActivity : AppCompatActivity() {
         val genre  = intent.getStringExtra("book_genre")  ?: ""
         val status = intent.getStringExtra("book_status") ?: ""
 
-        // Preenche os campos — ajuste os IDs conforme seu layout
         binding.tvBookTitle.text  = title
         binding.tvBookAuthor.text = author
         binding.tvBookYear.text   = year
@@ -36,8 +34,36 @@ class DetalhesAdminActivity : AppCompatActivity() {
         binding.tvBookStatus.text = status
         binding.imgBookCover.load(cover)
 
-        binding.btnAdicionarLivro.setOnClickListener {
-            startActivity(Intent(this, CadastroLivroActivity::class.java))
+        binding.tvBookStatus.setTextColor(
+            if (status == "Disponível")
+                getColor(android.R.color.holo_green_dark)
+            else
+                getColor(android.R.color.holo_red_dark)
+        )
+
+        binding.btnEditar.setOnClickListener {
+            val intent = Intent(this, EditarLivroActivity::class.java).apply {
+                putExtra("edit_mode",    true)
+                putExtra("book_title",  title)
+                putExtra("book_author", author)
+                putExtra("book_cover",  cover)
+                putExtra("book_year",   year)
+                putExtra("book_genre",  genre)
+                putExtra("book_status", status)
+            }
+            startActivity(intent)
+        }
+
+        binding.btnDeletar.setOnClickListener {
+            androidx.appcompat.app.AlertDialog.Builder(this)
+                .setTitle("Deletar livro")
+                .setMessage("Tem certeza que deseja deletar \"$title\"?")
+                .setPositiveButton("Deletar") { _, _ ->
+                    com.example.teste3.BookRepository.remove(title)
+                    finish()
+                }
+                .setNegativeButton("Cancelar", null)
+                .show()
         }
 
         setupBottomNav()

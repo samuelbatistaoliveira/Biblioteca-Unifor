@@ -1,6 +1,5 @@
 package com.example.teste3
 
-
 import com.example.teste3.home_aluno.Book
 
 object BookRepository {
@@ -39,5 +38,14 @@ object BookRepository {
 
     fun add(book: Book) {
         books.add(book)
+    }
+
+    fun remove(title: String) {
+        books.removeAll { it.title == title }
+    }
+
+    fun update(oldTitle: String, updatedBook: Book) {
+        val index = books.indexOfFirst { it.title == oldTitle }
+        if (index != -1) books[index] = updatedBook
     }
 }
