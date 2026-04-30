@@ -6,6 +6,7 @@ import android.widget.LinearLayout
 import com.example.teste3.R
 import com.example.teste3.home_aluno.HomeActivity
 import com.example.teste3.login.ChatbotActivity
+import com.example.teste3.perfil.MainActivity as PerfilActivity
 
 object BottomNavHelper {
 
@@ -62,14 +63,17 @@ object BottomNavHelper {
     private fun navigateTo(context: Context, item: NavItem) {
         when (item) {
             NavItem.CHAT -> {
-                val intent = Intent(context, ChatbotActivity::class.java)
-                context.startActivity(intent)
+                context.startActivity(Intent(context, ChatbotActivity::class.java))
             }
             NavItem.HOME -> {
-                val intent = Intent(context, HomeActivity::class.java).apply {
+                context.startActivity(Intent(context, HomeActivity::class.java).apply {
                     flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
-                }
-                context.startActivity(intent)
+                })
+            }
+            NavItem.PROFILE -> {
+                context.startActivity(Intent(context, PerfilActivity::class.java).apply {
+                    flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
+                })
             }
             else -> {}
         }

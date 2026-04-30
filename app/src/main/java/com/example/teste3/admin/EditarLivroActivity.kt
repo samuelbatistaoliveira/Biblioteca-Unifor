@@ -42,14 +42,15 @@ class EditarLivroActivity : AppCompatActivity() {
         val author   = intent.getStringExtra("book_author") ?: ""
         val cover    = intent.getStringExtra("book_cover")  ?: ""
         val year     = intent.getStringExtra("book_year")   ?: ""
+        val genre    = intent.getStringExtra("book_genre")  ?: ""
         val status   = intent.getStringExtra("book_status") ?: ""
 
         capaOriginal = cover
 
-        // Pré-preenche os campos
         binding.etNome.setText(oldTitle)
         binding.etAutor.setText(author)
         binding.etAno.setText(year)
+        binding.etGenero.setText(genre)
         binding.etEstado.setText(status)
         binding.imgCapa.load(cover)
 
@@ -62,9 +63,10 @@ class EditarLivroActivity : AppCompatActivity() {
             val novoNome   = binding.etNome.text.toString().trim()
             val novoAutor  = binding.etAutor.text.toString().trim()
             val novoAno    = binding.etAno.text.toString().trim()
+            val novoGenero = binding.etGenero.text.toString().trim()
             val novoEstado = binding.etEstado.text.toString().trim()
 
-            if (novoNome.isEmpty() || novoAutor.isEmpty() || novoAno.isEmpty() || novoEstado.isEmpty()) {
+            if (novoNome.isEmpty() || novoAutor.isEmpty() || novoAno.isEmpty() || novoGenero.isEmpty() || novoEstado.isEmpty()) {
                 Toast.makeText(this, "Preencha todos os campos!", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
@@ -77,6 +79,7 @@ class EditarLivroActivity : AppCompatActivity() {
                 author = novoAutor,
                 coverUrl = novaCapa,
                 year = novoAno,
+                genre = novoGenero,
                 status = novoEstado
             )
 

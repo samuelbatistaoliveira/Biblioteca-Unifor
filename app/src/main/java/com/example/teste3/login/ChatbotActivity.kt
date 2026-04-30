@@ -1,18 +1,19 @@
 package com.example.teste3.login
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
-import android.widget.ImageButton
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.teste3.BotaoNav.BottomNavHelper
 import com.example.teste3.R
 import com.example.teste3.databinding.ActivityChatbotBinding
+import com.example.teste3.home_aluno.HomeActivity
+import com.example.teste3.perfil.MainActivity as PerfilActivity
 
 class ChatbotActivity : AppCompatActivity() {
 
@@ -42,20 +43,26 @@ class ChatbotActivity : AppCompatActivity() {
             }
         }
 
-        BottomNavHelper.setup(
-            context         = this,
-            navChat         = binding.bottomNav.navChat,
-            navChatBg       = binding.bottomNav.navChatBg,
-            navHome         = binding.bottomNav.navHome,
-            navHomeBg       = binding.bottomNav.navHomeBg,
-            navCalendar     = binding.bottomNav.navCalendar,
-            navCalendarBg   = binding.bottomNav.navCalendarBg,
-            navCategories   = binding.bottomNav.navCategories,
-            navCategoriesBg = binding.bottomNav.navCategoriesBg,
-            navProfile      = binding.bottomNav.navProfile,
-            navProfileBg    = binding.bottomNav.navProfileBg,
-            activeItem      = BottomNavHelper.NavItem.CHAT
-        )
+        binding.bottomNavigation.selectedItemId = R.id.nav_chat
+        binding.bottomNavigation.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.nav_chat -> true
+                R.id.nav_home -> {
+                    startActivity(Intent(this, HomeActivity::class.java).apply {
+                        flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
+                    })
+                    true
+                }
+                R.id.nav_profile -> {
+                    startActivity(Intent(this, PerfilActivity::class.java))
+                    true
+                }
+                else -> {
+                    Toast.makeText(this, item.title ?: "Nav", Toast.LENGTH_SHORT).show()
+                    true
+                }
+            }
+        }
     }
 
     private fun adicionarMensagemBot(texto: String) {
