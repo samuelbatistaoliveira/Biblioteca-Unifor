@@ -7,7 +7,6 @@
     android:orientation="vertical"
     android:background="#F8F4EE">
 
-    <!-- Header navy igual à home -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -15,7 +14,6 @@
         android:background="#000000"
         android:paddingBottom="32dp">
 
-        <!-- Top Bar -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -42,7 +40,6 @@
 
         </LinearLayout>
 
-        <!-- Capa do livro -->
         <ImageView
             android:id="@+id/ivBookCover"
             android:layout_width="130dp"
@@ -55,7 +52,6 @@
 
     </LinearLayout>
 
-    <!-- Conteúdo rolável -->
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -67,7 +63,6 @@
             android:orientation="vertical"
             android:padding="24dp">
 
-            <!-- Título -->
             <TextView
                 android:id="@+id/tvBookTitle"
                 android:layout_width="wrap_content"
@@ -78,7 +73,6 @@
                 android:lineSpacingMultiplier="1.2"
                 android:text="Título" />
 
-            <!-- Autor -->
             <TextView
                 android:id="@+id/tvBookAuthor"
                 android:layout_width="wrap_content"
@@ -88,7 +82,6 @@
                 android:textColor="#6B4C3B"
                 android:text="Autor" />
 
-            <!-- Divisor dourado -->
             <View
                 android:layout_width="40dp"
                 android:layout_height="3dp"
@@ -96,14 +89,12 @@
                 android:layout_marginBottom="16dp"
                 android:background="@drawable/bg_gold_divider" />
 
-            <!-- Cards de info -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_marginBottom="20dp">
 
-                <!-- Ano -->
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -138,7 +129,6 @@
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
 
-                <!-- Gênero -->
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -174,7 +164,6 @@
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
 
-                <!-- Estado -->
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -211,7 +200,6 @@
 
             </LinearLayout>
 
-            <!-- Botão confirmar — estilo igual ao "Alugar Livro" da tela de detalhes -->
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnConfirm"
                 android:layout_width="match_parent"
@@ -225,7 +213,6 @@
                 app:elevation="4dp"
                 android:layout_marginBottom="10dp" />
 
-            <!-- Botão cancelar -->
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnCancel"
                 android:layout_width="match_parent"
@@ -239,7 +226,6 @@
                 app:strokeWidth="1.5dp"
                 app:cornerRadius="14dp" />
 
-            <!-- Card de aviso -->
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -275,11 +261,15 @@
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 
-    <!-- Bottom Navigation customizado -->
-    <include
-        android:id="@+id/bottomNav"
-        layout="@layout/bottom_nav_custom"
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigation"
         android:layout_width="match_parent"
-        android:layout_height="64dp" />
+        android:layout_height="64dp"
+        android:background="#121212"
+        android:elevation="20dp"
+        app:itemIconTint="@color/bottom_nav_colors"
+        app:itemTextColor="@color/bottom_nav_colors"
+        app:labelVisibilityMode="unlabeled"
+        app:menu="@menu/bottom_nav_menu" />
 
 </LinearLayout>

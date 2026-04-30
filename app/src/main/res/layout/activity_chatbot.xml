@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#F8F4EE"
+    android:background="#FDF8F2"
     android:id="@+id/main">
 
     <!-- Título -->
@@ -84,10 +84,15 @@
     </androidx.cardview.widget.CardView>
 
     <!-- Bottom Navigation customizado -->
-    <include
-        android:id="@+id/bottomNav"
-        layout="@layout/bottom_nav_custom"
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigation"
         android:layout_width="match_parent"
-        android:layout_height="64dp" />
+        android:layout_height="64dp"
+        android:background="#121212"
+        android:elevation="20dp"
+        app:itemIconTint="@color/bottom_nav_colors"
+        app:itemTextColor="@color/bottom_nav_colors"
+        app:labelVisibilityMode="unlabeled"
+        app:menu="@menu/bottom_nav_menu" />
 
 </LinearLayout>

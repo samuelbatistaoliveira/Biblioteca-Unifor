@@ -9,10 +9,10 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import coil.load
 import com.example.teste3.BookRepository
-import com.example.teste3.BotaoNav.BottomNavHelper
 import com.example.teste3.R
 import com.example.teste3.databinding.ActivityHomeAdminBinding
 import com.example.teste3.home_aluno.Book
+import com.example.teste3.login.ChatbotActivity
 
 class HomeAdminActivity : AppCompatActivity() {
 
@@ -43,22 +43,29 @@ class HomeAdminActivity : AppCompatActivity() {
     }
 
     private fun setupBottomNav() {
-        BottomNavHelper.setup(
-            context         = this,
-            navChat         = binding.bottomNav.navChat,
-            navChatBg       = binding.bottomNav.navChatBg,
-            navHome         = binding.bottomNav.navHome,
-            navHomeBg       = binding.bottomNav.navHomeBg,
-            navCalendar     = binding.bottomNav.navCalendar,
-            navCalendarBg   = binding.bottomNav.navCalendarBg,
-            navCategories   = binding.bottomNav.navCategories,
-            navCategoriesBg = binding.bottomNav.navCategoriesBg,
-            navProfile      = binding.bottomNav.navProfile,
-            navProfileBg    = binding.bottomNav.navProfileBg,
-            activeItem      = BottomNavHelper.NavItem.HOME
-        )
-        binding.bottomNav.navChat.setOnClickListener { }
-        binding.bottomNav.navHome.setOnClickListener { }
+        binding.bottomNavigation.selectedItemId = R.id.nav_home
+
+        binding.bottomNavigation.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.nav_chat -> {
+                    true
+                }
+                R.id.nav_home -> true
+                R.id.nav_calendar -> {
+                    startActivity(Intent(this, com.example.teste3.salas.AdmSalas::class.java))
+                    true
+                }
+                R.id.nav_categories -> {
+                    Toast.makeText(this, "Categorias", Toast.LENGTH_SHORT).show()
+                    true
+                }
+                R.id.nav_profile -> {
+                    startActivity(Intent(this, perfiladm::class.java))
+                    true
+                }
+                else -> false
+            }
+        }
     }
 
     private fun loadBooks(books: List<Book>) {

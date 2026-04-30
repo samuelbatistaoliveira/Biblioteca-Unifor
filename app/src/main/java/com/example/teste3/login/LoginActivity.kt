@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.teste3.R
+import com.example.teste3.admin.HomeAdminActivity
 import com.example.teste3.home_aluno.HomeActivity
 import com.google.android.material.button.MaterialButton
 
@@ -35,12 +36,23 @@ class LoginActivity : AppCompatActivity() {
 
         val btnEntrar = findViewById<MaterialButton>(R.id.btnEntrar)
         btnEntrar.setOnClickListener {
-            val email = findViewById<EditText>(R.id.etEmail).text.toString()
-            val senha = findViewById<EditText>(R.id.etSenha).text.toString()
+            val email = findViewById<EditText>(R.id.etEmail).text.toString().trim()
+            val senha = findViewById<EditText>(R.id.etSenha).text.toString().trim()
 
             if (email.isNotEmpty() && senha.isNotEmpty()) {
-                startActivity(Intent(this, HomeActivity::class.java))
-                finish()
+                when {
+                    email == "admin@escola.com" && senha == "admin123" -> {
+                        startActivity(Intent(this, HomeAdminActivity::class.java))
+                        finish()
+                    }
+                    email == "aluno@escola.com" && senha == "aluno123" -> {
+                        startActivity(Intent(this, HomeActivity::class.java))
+                        finish()
+                    }
+                    else -> {
+                        Toast.makeText(this, "Email ou senha incorretos", Toast.LENGTH_SHORT).show()
+                    }
+                }
             } else {
                 Toast.makeText(this, "Preencha email e senha", Toast.LENGTH_SHORT).show()
             }
