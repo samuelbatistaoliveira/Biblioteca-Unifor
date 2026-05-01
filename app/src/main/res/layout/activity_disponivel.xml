@@ -428,7 +428,8 @@
                 android:layout_height="22dp"
                 android:src="@drawable/ic_chat"
                 android:contentDescription="Chat"
-                app:tint="@color/bottom_nav_icon_color" />
+                android:duplicateParentState="true"
+                app:tint="@color/bottom_nav_colors" />
         </LinearLayout>
 
         <!-- Home -->

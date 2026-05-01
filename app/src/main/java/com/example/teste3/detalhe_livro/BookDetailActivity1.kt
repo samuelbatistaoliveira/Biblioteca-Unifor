@@ -10,7 +10,7 @@ import com.example.teste3.aluguel_livros.AluguelActivity
 import com.example.teste3.databinding.ActivityBookDetailBinding
 import com.example.teste3.home_aluno.HomeActivity
 import com.example.teste3.login.ChatbotActivity
-import com.example.teste3.perfil.MainActivity as PerfilActivity
+import com.example.teste3.perfil.PrincipalPerfil as PerfilActivity
 
 class BookDetailActivity : AppCompatActivity() {
 
@@ -45,6 +45,7 @@ class BookDetailActivity : AppCompatActivity() {
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         binding.toolbar.setNavigationOnClickListener { finish() }
+        setNavAtivo("home")
 
         binding.btnRent.setOnClickListener {
             if (status != "Disponível") {
@@ -61,28 +62,46 @@ class BookDetailActivity : AppCompatActivity() {
             })
         }
 
-        binding.bottomNavigation.selectedItemId = R.id.nav_home
-        binding.bottomNavigation.setOnItemSelectedListener { item ->
-            when (item.itemId) {
-                R.id.nav_home -> {
-                    startActivity(Intent(this, HomeActivity::class.java).apply {
-                        flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
-                    })
-                    true
-                }
-                R.id.nav_chat -> {
-                    startActivity(Intent(this, ChatbotActivity::class.java))
-                    true
-                }
-                R.id.nav_profile -> {
-                    startActivity(Intent(this, PerfilActivity::class.java))
-                    true
-                }
-                else -> {
-                    Toast.makeText(this, item.title ?: "Nav", Toast.LENGTH_SHORT).show()
-                    true
-                }
-            }
+
+
+        binding.navHome.setOnClickListener {
+            startActivity(Intent(this, HomeActivity::class.java).apply {
+                flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
+            })
+        }
+
+        binding.navChat.setOnClickListener {
+            startActivity(Intent(this, ChatbotActivity::class.java))
+        }
+
+        binding.navReservas.setOnClickListener {
+            startActivity(Intent(this, com.example.teste3.salas.Disponivel::class.java))
+        }
+
+        binding.navSalas.setOnClickListener {
+            Toast.makeText(this, "Salas", Toast.LENGTH_SHORT).show()
+        }
+
+        binding.navPerfil.setOnClickListener {
+            startActivity(Intent(this, PerfilActivity::class.java))
+        }
+        binding.navSalas.setOnClickListener {
+            startActivity(Intent(this, com.example.teste3.mapa.MapaBibliotecaActivity::class.java))
+        }
+    }
+    private fun setNavAtivo(ativo: String) {
+        val itens = mapOf(
+            "chat"     to Pair(binding.navChat,     binding.iconChat),
+            "home"     to Pair(binding.navHome,     binding.iconHome),
+            "reservas" to Pair(binding.navReservas, binding.iconReservas),
+            "salas"    to Pair(binding.navSalas,    binding.iconSalas),
+            "perfil"   to Pair(binding.navPerfil,   binding.iconPerfil)
+        )
+
+        itens.forEach { (item, views) ->
+            val selecionado = item == ativo
+            views.first.isSelected  = selecionado
+            views.second.isSelected = selecionado
         }
     }
 }

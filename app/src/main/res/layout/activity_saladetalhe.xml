@@ -14,11 +14,10 @@
         android:background="#2C1F00"
         android:padding="16dp">
 
-        <!-- Botão Voltar -->
         <ImageView
             android:id="@+id/btnVoltar"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_marginTop="4dp"
@@ -30,7 +29,6 @@
             android:contentDescription="Voltar"
             app:tint="#C8A97E" />
 
-        <!-- Conteúdo inferior do header -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -38,7 +36,6 @@
             android:layout_marginBottom="8dp"
             android:orientation="vertical">
 
-            <!-- Badge LIVRE -->
             <TextView
                 android:id="@+id/tvBadge"
                 android:layout_width="wrap_content"
@@ -52,7 +49,6 @@
                 android:textSize="11sp"
                 android:textStyle="bold" />
 
-            <!-- Nome da Sala -->
             <TextView
                 android:id="@+id/tvNomeSala"
                 android:layout_width="wrap_content"
@@ -62,7 +58,6 @@
                 android:textSize="30sp"
                 android:textStyle="bold" />
 
-            <!-- Andar -->
             <TextView
                 android:id="@+id/tvAndar"
                 android:layout_width="wrap_content"
@@ -81,7 +76,8 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:fillViewport="true"
-        android:overScrollMode="never">
+        android:overScrollMode="never"
+        android:importantForAccessibility="no">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -300,67 +296,8 @@
                             android:textSize="13sp"
                             android:gravity="center"
                             android:lineSpacingMultiplier="1.3"/>
+
                     </LinearLayout>
-
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-
-            <!-- CARD: Fazer uma Reserva -->
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:cardCornerRadius="12dp"
-                app:cardElevation="2dp"
-                app:cardBackgroundColor="#FFFFFF">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="16dp">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:gravity="center_vertical"
-                        android:layout_marginBottom="10dp">
-
-                        <ImageView
-                            android:layout_width="18dp"
-                            android:layout_height="18dp"
-                            android:src="@drawable/ic_chat"
-                            android:contentDescription="Reserva"
-                            app:tint="#C8A96E"/>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Fazer uma Reserva"
-                            android:textColor="#1C1C1C"
-                            android:textSize="15sp"
-                            android:textStyle="bold"
-                            android:layout_marginStart="8dp"/>
-                    </LinearLayout>
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Deseja reservar esta sala? Clique no botão abaixo para solicitar uma reserva."
-                        android:textColor="#777777"
-                        android:textSize="13sp"
-                        android:lineSpacingMultiplier="1.4"
-                        android:layout_marginBottom="14dp"/>
-
-                    <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/btnReservar"
-                        android:layout_width="match_parent"
-                        android:layout_height="48dp"
-                        android:text="Solicitar Reserva"
-                        android:textColor="#FFFFFF"
-                        android:textSize="14sp"
-                        android:textStyle="bold"
-                        android:background="@drawable/bg_btn_reservar"/>
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -374,16 +311,16 @@
         android:layout_height="1dp"
         android:background="#2A2A2A" />
 
-    <!-- ── BOTTOM NAV SEM LABELS ── -->
+    <!-- BOTTOM NAV -->
     <LinearLayout
         android:id="@+id/bottomNavBar"
         android:layout_width="match_parent"
         android:layout_height="64dp"
         android:background="#121212"
         android:orientation="horizontal"
-        android:elevation="20dp">
+        android:elevation="20dp"
+        android:gravity="center_vertical">
 
-        <!-- Menu -->
         <LinearLayout
             android:id="@+id/navMenu"
             android:layout_width="0dp"
@@ -403,7 +340,6 @@
                 app:tint="@color/bottom_nav_icon_color" />
         </LinearLayout>
 
-        <!-- Home -->
         <LinearLayout
             android:id="@+id/navHome"
             android:layout_width="0dp"
@@ -423,7 +359,6 @@
                 app:tint="@color/bottom_nav_icon_color" />
         </LinearLayout>
 
-        <!-- Reservas -->
         <LinearLayout
             android:id="@+id/navReservas"
             android:layout_width="0dp"
@@ -443,7 +378,6 @@
                 app:tint="@color/bottom_nav_icon_color" />
         </LinearLayout>
 
-        <!-- Salas -->
         <LinearLayout
             android:id="@+id/navSalas"
             android:layout_width="0dp"
@@ -463,7 +397,6 @@
                 app:tint="@color/bottom_nav_icon_color" />
         </LinearLayout>
 
-        <!-- Perfil -->
         <LinearLayout
             android:id="@+id/navPerfil"
             android:layout_width="0dp"

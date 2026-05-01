@@ -21,7 +21,7 @@ class configuracoes : AppCompatActivity() {
 
         val itemMeuPerfil = findViewById<RelativeLayout>(R.id.itemMeuPerfil)
         itemMeuPerfil.setOnClickListener {
-            startActivity(Intent(this, MainActivity::class.java).apply {
+            startActivity(Intent(this, PrincipalPerfil::class.java).apply {
                 flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
             })
         }

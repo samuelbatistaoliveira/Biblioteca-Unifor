@@ -6,7 +6,7 @@ import android.widget.LinearLayout
 import com.example.teste3.R
 import com.example.teste3.home_aluno.HomeActivity
 import com.example.teste3.login.ChatbotActivity
-import com.example.teste3.perfil.MainActivity as PerfilActivity
+import com.example.teste3.perfil.PrincipalPerfil as PerfilActivity
 
 object BottomNavHelper {
 

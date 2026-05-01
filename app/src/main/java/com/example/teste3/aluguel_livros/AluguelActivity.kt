@@ -2,6 +2,8 @@ package com.example.teste3.aluguel_livros
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import coil.load
@@ -9,7 +11,9 @@ import com.example.teste3.R
 import com.example.teste3.databinding.ActivityAluguelBinding
 import com.example.teste3.home_aluno.HomeActivity
 import com.example.teste3.login.ChatbotActivity
-import com.example.teste3.perfil.MainActivity as PerfilActivity
+import com.example.teste3.mapa.MapaBibliotecaActivity
+import com.example.teste3.salas.Disponivel
+import com.example.teste3.perfil.PrincipalPerfil as PerfilActivity
 
 class AluguelActivity : AppCompatActivity() {
 
@@ -41,7 +45,7 @@ class AluguelActivity : AppCompatActivity() {
                 getColor(android.R.color.holo_red_dark)
         )
 
-        binding.btnBack.setOnClickListener { finish() }
+        binding.toolbar.setNavigationOnClickListener { finish() }
 
         binding.btnConfirm.setOnClickListener {
             Toast.makeText(this, "Retirada confirmada! Retire na Biblioteca da Unifor.", Toast.LENGTH_LONG).show()
@@ -53,28 +57,52 @@ class AluguelActivity : AppCompatActivity() {
             finish()
         }
 
-        binding.bottomNavigation.selectedItemId = R.id.nav_home
-        binding.bottomNavigation.setOnItemSelectedListener { item ->
-            when (item.itemId) {
-                R.id.nav_home -> {
-                    startActivity(Intent(this, HomeActivity::class.java).apply {
-                        flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
-                    })
-                    true
-                }
-                R.id.nav_chat -> {
-                    startActivity(Intent(this, ChatbotActivity::class.java))
-                    true
-                }
-                R.id.nav_profile -> {
-                    startActivity(Intent(this, PerfilActivity::class.java))
-                    true
-                }
-                else -> {
-                    Toast.makeText(this, item.title ?: "Nav", Toast.LENGTH_SHORT).show()
-                    true
-                }
-            }
+        // ── Nenhum item ativo no bottom nav desta tela ──
+        setNavAtivo("home")
+
+        binding.navHome.setOnClickListener {
+            startActivity(Intent(this, HomeActivity::class.java).apply {
+                flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
+            })
+        }
+
+        binding.navChat.setOnClickListener {
+            startActivity(Intent(this, ChatbotActivity::class.java))
+        }
+
+        binding.navPerfil.setOnClickListener {
+            startActivity(Intent(this, PerfilActivity::class.java))
+        }
+
+        // ✅ Reservas → Disponivel
+        binding.navReservas.setOnClickListener {
+            startActivity(Intent(this, Disponivel::class.java))
+        }
+
+        // ✅ Salas → MapaBibliotecaActivity
+        binding.navSalas.setOnClickListener {
+            startActivity(Intent(this, MapaBibliotecaActivity::class.java))
+        }
+    }
+
+    private fun setNavAtivo(ativo: String?) {
+        data class NavItem(val layoutId: Int, val iconId: Int)
+
+        val itens = mapOf(
+            "chat"     to NavItem(R.id.navChat,     R.id.iconChat),
+            "home"     to NavItem(R.id.navHome,     R.id.iconHome),
+            "reservas" to NavItem(R.id.navReservas, R.id.iconReservas),
+            "salas"    to NavItem(R.id.navSalas,    R.id.iconSalas),
+            "perfil"   to NavItem(R.id.navPerfil,   R.id.iconPerfil)
+        )
+
+        itens.forEach { (item, nav) ->
+            val layout = findViewById<LinearLayout>(nav.layoutId) ?: return@forEach
+            val icon   = findViewById<ImageView>(nav.iconId)      ?: return@forEach
+
+            val selecionado = item == ativo
+            layout.isSelected = selecionado
+            icon.isSelected   = selecionado
         }
     }
 }

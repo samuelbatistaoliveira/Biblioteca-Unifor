@@ -171,7 +171,7 @@
                 android:id="@+id/iconChat"
                 android:layout_width="22dp"
                 android:layout_height="22dp"
-                android:src="@drawable/ic_menu"
+                android:src="@drawable/ic_chat"
                 android:contentDescription="Menu"
                 app:tint="@color/bottom_nav_icon_color" />
         </LinearLayout>
