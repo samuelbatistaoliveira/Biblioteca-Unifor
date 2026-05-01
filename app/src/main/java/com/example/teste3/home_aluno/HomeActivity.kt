@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -12,7 +13,7 @@ import com.example.teste3.R
 import com.example.teste3.databinding.ActivityHomeBinding
 import com.example.teste3.detalhe_livro.BookDetailActivity
 import com.example.teste3.login.ChatbotActivity
-import com.example.teste3.perfil.MainActivity as PerfilActivity
+import com.example.teste3.perfil.PrincipalPerfil as PerfilActivity
 import com.example.teste3.salas.Disponivel
 import com.example.teste3.mapa.MapaBibliotecaActivity
 
@@ -30,6 +31,16 @@ class HomeActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityHomeBinding
 
+    private data class NavItem(val layoutId: Int, val iconId: Int)
+
+    private val navItens = mapOf(
+        "menu"     to NavItem(R.id.navChat,     R.id.iconChat),
+        "home"     to NavItem(R.id.navHome,     R.id.iconHome),
+        "reservas" to NavItem(R.id.navReservas, R.id.iconReservas),
+        "salas"    to NavItem(R.id.navSalas,    R.id.iconSalas),
+        "perfil"   to NavItem(R.id.navPerfil,   R.id.iconPerfil)
+    )
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityHomeBinding.inflate(layoutInflater)
@@ -45,30 +56,41 @@ class HomeActivity : AppCompatActivity() {
         loadBooks(sampleBooks())
     }
 
-    private fun setupBottomNav() {
-        binding.bottomNavigation.selectedItemId = R.id.nav_home
+    override fun onResume() {
+        super.onResume()
+        setNavAtivo("home")
+    }
 
-        binding.bottomNavigation.setOnItemSelectedListener { item ->
-            when (item.itemId) {
-                R.id.nav_chat -> {
-                    startActivity(Intent(this, ChatbotActivity::class.java))
-                    true
-                }
-                R.id.nav_home -> true
-                R.id.nav_calendar -> {
-                    startActivity(Intent(this, Disponivel::class.java))
-                    true
-                }
-                R.id.nav_categories -> {
-                    startActivity(Intent(this, MapaBibliotecaActivity::class.java))
-                    true
-                }
-                R.id.nav_profile -> {
-                    startActivity(Intent(this, PerfilActivity::class.java))
-                    true
-                }
-                else -> false
-            }
+    private fun setupBottomNav() {
+        setNavAtivo("home")
+
+        findViewById<LinearLayout>(R.id.navChat).setOnClickListener {
+            startActivity(Intent(this, ChatbotActivity::class.java))
+        }
+        findViewById<LinearLayout>(R.id.navHome).setOnClickListener {
+            // já estamos na home
+        }
+        findViewById<LinearLayout>(R.id.navReservas).setOnClickListener {
+            startActivity(Intent(this, Disponivel::class.java))
+        }
+        findViewById<LinearLayout>(R.id.navSalas).setOnClickListener {
+            startActivity(Intent(this, MapaBibliotecaActivity::class.java))
+        }
+        findViewById<LinearLayout>(R.id.navPerfil).setOnClickListener {
+            startActivity(Intent(this, PerfilActivity::class.java))
+        }
+    }
+
+    private fun setNavAtivo(ativo: String) {
+        navItens.forEach { (item, nav) ->
+            val selecionado = item == ativo
+            findViewById<LinearLayout>(nav.layoutId)?.isSelected = selecionado
+            val icon = findViewById<ImageView>(nav.iconId)
+            icon?.isSelected = selecionado
+            icon?.imageTintList = android.content.res.ColorStateList.valueOf(
+                if (selecionado) android.graphics.Color.parseColor("#C9A84C")
+                else android.graphics.Color.parseColor("#888888")
+            )
         }
     }
 

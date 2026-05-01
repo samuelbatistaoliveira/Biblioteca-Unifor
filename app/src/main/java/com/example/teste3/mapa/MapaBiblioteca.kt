@@ -83,6 +83,7 @@ class MapaBibliotecaActivity : AppCompatActivity() {
     }
 
     private fun setupBottomNav() {
+        setNavAtivo("salas")
         navItens.forEach { (item, nav) ->
             findViewById<LinearLayout>(nav.layoutId)?.setOnClickListener {
                 setNavAtivo(item)
@@ -90,8 +91,7 @@ class MapaBibliotecaActivity : AppCompatActivity() {
                     "menu"     -> startActivity(Intent(this, com.example.teste3.login.ChatbotActivity::class.java))
                     "home"     -> startActivity(Intent(this, com.example.teste3.home_aluno.HomeActivity::class.java))
                     "reservas" -> startActivity(Intent(this, com.example.teste3.salas.Disponivel::class.java))
-                    "perfil"   -> startActivity(Intent(this, com.example.teste3.perfil.MainActivity::class.java))
-                    // "salas" — adicione quando tiver a tela correspondente
+                    "perfil"   -> startActivity(Intent(this, com.example.teste3.perfil.PrincipalPerfil::class.java))
                 }
             }
         }
@@ -101,7 +101,12 @@ class MapaBibliotecaActivity : AppCompatActivity() {
         navItens.forEach { (item, nav) ->
             val selecionado = item == ativo
             findViewById<LinearLayout>(nav.layoutId)?.isSelected = selecionado
-            findViewById<ImageView>(nav.iconId)?.isSelected = selecionado
+            val icon = findViewById<ImageView>(nav.iconId)
+            icon?.isSelected = selecionado
+            icon?.imageTintList = android.content.res.ColorStateList.valueOf(
+                if (selecionado) android.graphics.Color.parseColor("#C9A84C")
+                else android.graphics.Color.parseColor("#888888")
+            )
         }
     }
 }

@@ -11,4 +11,6 @@
     <!--  Bege      — barra vazia   -->
     <color name="bg_tela">#FDF8F2</color>
     <color name="bottom_nav_icon_color">#666666</color>
+    <color name="gold">#C9A84C</color>
+
 </resources>

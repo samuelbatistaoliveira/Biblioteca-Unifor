@@ -61,7 +61,7 @@
 
 
         <!-- Perfil -->
-        <activity android:name=".perfil.MainActivity"
+        <activity android:name=".perfil.PrincipalPerfil"
             android:exported="false" />
 
         <activity android:name=".perfil.EditarPerfil"

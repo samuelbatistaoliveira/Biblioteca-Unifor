@@ -4,14 +4,13 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.LinearLayout
-import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import com.example.teste3.R
 import com.example.teste3.home_aluno.HomeActivity
 import com.example.teste3.login.ChatbotActivity
-import com.example.teste3.perfil.MainActivity as PerfilActivity
+import com.example.teste3.perfil.PrincipalPerfil as PerfilActivity
 
 class Disponivel : AppCompatActivity() {
 
@@ -43,8 +42,8 @@ class Disponivel : AppCompatActivity() {
             abrirDetalhe("Sala D", "Andar 2", "10", "OCUPADA")
         }
 
-        // Menu inferior
-        setNavAtivo("salas")
+        // Menu inferior — calendário ativo pois estamos na tela de salas
+        setNavAtivo("reservas")
 
         findViewById<LinearLayout>(R.id.navMenu).setOnClickListener {
             startActivity(Intent(this, ChatbotActivity::class.java))
@@ -52,11 +51,11 @@ class Disponivel : AppCompatActivity() {
         findViewById<LinearLayout>(R.id.navHome).setOnClickListener {
             startActivity(Intent(this, HomeActivity::class.java))
         }
-        findViewById<LinearLayout>(R.id.navSalas).setOnClickListener {
-            // ja estamos na tela de salas
-        }
         findViewById<LinearLayout>(R.id.navReservas).setOnClickListener {
-            Toast.makeText(this, "Em breve", Toast.LENGTH_SHORT).show()
+            // já estamos na tela de salas
+        }
+        findViewById<LinearLayout>(R.id.navSalas).setOnClickListener {
+            startActivity(Intent(this, com.example.teste3.mapa.MapaBibliotecaActivity::class.java))
         }
         findViewById<LinearLayout>(R.id.navPerfil).setOnClickListener {
             startActivity(Intent(this, PerfilActivity::class.java))
@@ -86,8 +85,8 @@ class Disponivel : AppCompatActivity() {
         val itens = mapOf(
             "chat"     to NavItem(R.id.navMenu,     R.id.iconChat),
             "home"     to NavItem(R.id.navHome,     R.id.iconHome),
-            "salas"    to NavItem(R.id.navSalas,    R.id.iconSalas),
             "reservas" to NavItem(R.id.navReservas, R.id.iconReservas),
+            "salas"    to NavItem(R.id.navSalas,    R.id.iconSalas),
             "perfil"   to NavItem(R.id.navPerfil,   R.id.iconPerfil)
         )
 
@@ -98,6 +97,10 @@ class Disponivel : AppCompatActivity() {
             val selecionado = item == ativo
             layout.isSelected = selecionado
             icon.isSelected   = selecionado
+            icon.imageTintList = android.content.res.ColorStateList.valueOf(
+                if (selecionado) android.graphics.Color.parseColor("#C9A84C")
+                else android.graphics.Color.parseColor("#888888")
+            )
         }
     }
 }

@@ -14,7 +14,11 @@ import androidx.core.view.ViewCompat
 import com.example.teste3.R
 import com.example.teste3.home_aluno.HomeActivity
 import com.example.teste3.login.ChatbotActivity
-import com.example.teste3.perfil.MainActivity as PerfilActivity
+import com.example.teste3.mapa.MapaBibliotecaActivity
+import com.example.teste3.perfil.PrincipalPerfil as PerfilActivity
+import androidx.core.widget.ImageViewCompat
+import androidx.core.content.ContextCompat
+import android.content.res.ColorStateList
 
 class saladetalhe : AppCompatActivity() {
 
@@ -47,18 +51,14 @@ class saladetalhe : AppCompatActivity() {
             finish()
         }
 
-        findViewById<Button>(R.id.btnReservar)?.setOnClickListener {
-            AlertDialog.Builder(this)
-                .setTitle("Confirmar Reserva")
-                .setMessage("Deseja solicitar a reserva de $nomeSala?")
-                .setPositiveButton("Confirmar") { _, _ ->
-                    Toast.makeText(this, "Reserva solicitada com sucesso!", Toast.LENGTH_SHORT).show()
-                }
-                .setNegativeButton("Cancelar", null)
-                .show()
-        }
 
-        setNavAtivo("salas")
+
+        setNavAtivo("reservas")
+
+        ImageViewCompat.setImageTintList(
+            findViewById(R.id.iconReservas),
+            ColorStateList.valueOf(ContextCompat.getColor(this, R.color.gold))
+        )
 
         findViewById<LinearLayout>(R.id.navMenu)?.setOnClickListener {
             startActivity(Intent(this, ChatbotActivity::class.java))
@@ -66,11 +66,11 @@ class saladetalhe : AppCompatActivity() {
         findViewById<LinearLayout>(R.id.navHome)?.setOnClickListener {
             startActivity(Intent(this, HomeActivity::class.java))
         }
-        findViewById<LinearLayout>(R.id.navSalas)?.setOnClickListener {
-            startActivity(Intent(this, Disponivel::class.java))
+        findViewById<LinearLayout>(R.id.navSalas).setOnClickListener {
+            startActivity(Intent(this, MapaBibliotecaActivity::class.java))
         }
-        findViewById<LinearLayout>(R.id.navReservas)?.setOnClickListener {
-            Toast.makeText(this, "Em breve", Toast.LENGTH_SHORT).show()
+        findViewById<LinearLayout>(R.id.navReservas).setOnClickListener {
+            startActivity(Intent(this, Disponivel::class.java))
         }
         findViewById<LinearLayout>(R.id.navPerfil)?.setOnClickListener {
             startActivity(Intent(this, PerfilActivity::class.java))

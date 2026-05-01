@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -13,13 +15,23 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.teste3.R
 import com.example.teste3.databinding.ActivityChatbotBinding
 import com.example.teste3.home_aluno.HomeActivity
-import com.example.teste3.perfil.MainActivity as PerfilActivity
+import com.example.teste3.perfil.PrincipalPerfil as PerfilActivity
 
 class ChatbotActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityChatbotBinding
     private lateinit var adapter: MensagensAdapter
     private val mensagens = mutableListOf<Mensagem>()
+
+    private data class NavItem(val layoutId: Int, val iconId: Int)
+
+    private val navItens = mapOf(
+        "chat"     to NavItem(R.id.navChat,     R.id.iconChat),
+        "home"     to NavItem(R.id.navHome,     R.id.iconHome),
+        "reservas" to NavItem(R.id.navReservas, R.id.iconReservas),
+        "salas"    to NavItem(R.id.navSalas,    R.id.iconSalas),
+        "perfil"   to NavItem(R.id.navPerfil,   R.id.iconPerfil)
+    )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,25 +55,46 @@ class ChatbotActivity : AppCompatActivity() {
             }
         }
 
-        binding.bottomNavigation.selectedItemId = R.id.nav_chat
-        binding.bottomNavigation.setOnItemSelectedListener { item ->
-            when (item.itemId) {
-                R.id.nav_chat -> true
-                R.id.nav_home -> {
-                    startActivity(Intent(this, HomeActivity::class.java).apply {
-                        flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
-                    })
-                    true
-                }
-                R.id.nav_profile -> {
-                    startActivity(Intent(this, PerfilActivity::class.java))
-                    true
-                }
-                else -> {
-                    Toast.makeText(this, item.title ?: "Nav", Toast.LENGTH_SHORT).show()
-                    true
-                }
-            }
+        setNavAtivo("chat")
+
+        binding.navChat.setOnClickListener { /* já está no chat */ }
+
+        binding.navHome.setOnClickListener {
+            startActivity(Intent(this, HomeActivity::class.java).apply {
+                flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
+            })
+        }
+
+        binding.navPerfil.setOnClickListener {
+            startActivity(Intent(this, PerfilActivity::class.java))
+        }
+
+        binding.navReservas.setOnClickListener {
+            Toast.makeText(this, "Reservas", Toast.LENGTH_SHORT).show()
+        }
+
+        binding.navSalas.setOnClickListener {
+            Toast.makeText(this, "Salas", Toast.LENGTH_SHORT).show()
+        }
+        binding.navReservas.setOnClickListener {
+            startActivity(Intent(this, com.example.teste3.salas.Disponivel::class.java))
+        }
+
+        binding.navSalas.setOnClickListener {
+            startActivity(Intent(this, com.example.teste3.mapa.MapaBibliotecaActivity::class.java))
+        }
+    }
+
+    private fun setNavAtivo(ativo: String) {
+        navItens.forEach { (item, nav) ->
+            val selecionado = item == ativo
+            findViewById<LinearLayout>(nav.layoutId)?.isSelected = selecionado
+            val icon = findViewById<ImageView>(nav.iconId)
+            icon?.isSelected = selecionado
+            icon?.imageTintList = android.content.res.ColorStateList.valueOf(
+                if (selecionado) android.graphics.Color.parseColor("#C9A84C")
+                else android.graphics.Color.parseColor("#888888")
+            )
         }
     }
 

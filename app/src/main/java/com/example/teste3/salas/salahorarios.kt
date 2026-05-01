@@ -13,7 +13,8 @@ import androidx.core.view.WindowInsetsCompat
 import com.example.teste3.R
 import com.example.teste3.home_aluno.HomeActivity
 import com.example.teste3.login.ChatbotActivity
-import com.example.teste3.perfil.MainActivity as PerfilActivity
+import com.example.teste3.mapa.MapaBibliotecaActivity
+import com.example.teste3.perfil.PrincipalPerfil as PerfilActivity
 
 class salahorarios : AppCompatActivity() {
 
@@ -21,6 +22,10 @@ class salahorarios : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_salahorarios)
+        val toolbar = findViewById<androidx.appcompat.widget.Toolbar>(R.id.toolbar)
+        setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        toolbar.setNavigationOnClickListener { finish() }
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -35,7 +40,7 @@ class salahorarios : AppCompatActivity() {
         findViewById<TextView>(R.id.tvSalaTitulo).text = "$nomeSala, $andar"
         findViewById<TextView>(R.id.tvCapacidade).text = "Cap. $capacidade pessoas"
 
-        setNavAtivo("salas")
+        setNavAtivo("reservas")
 
         findViewById<LinearLayout>(R.id.navMenu).setOnClickListener {
             startActivity(Intent(this, ChatbotActivity::class.java))
@@ -44,10 +49,10 @@ class salahorarios : AppCompatActivity() {
             startActivity(Intent(this, HomeActivity::class.java))
         }
         findViewById<LinearLayout>(R.id.navSalas).setOnClickListener {
-            startActivity(Intent(this, Disponivel::class.java))
+            startActivity(Intent(this, MapaBibliotecaActivity::class.java))
         }
         findViewById<LinearLayout>(R.id.navReservas).setOnClickListener {
-            Toast.makeText(this, "Em breve", Toast.LENGTH_SHORT).show()
+            startActivity(Intent(this, Disponivel::class.java))
         }
         findViewById<LinearLayout>(R.id.navPerfil).setOnClickListener {
             startActivity(Intent(this, PerfilActivity::class.java))
