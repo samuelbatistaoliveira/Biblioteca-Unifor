@@ -427,7 +427,7 @@
                 android:layout_height="22dp"
                 android:src="@drawable/ic_menu"
                 android:contentDescription="Menu"
-                app:tint="@color/bottom_nav_icon_color" />
+                app:tint="@color/bottom_nav_colors" />
         </LinearLayout>
 
         <!-- Home -->
@@ -447,7 +447,7 @@
                 android:layout_height="22dp"
                 android:src="@drawable/ic_home"
                 android:contentDescription="Início"
-                app:tint="@color/bottom_nav_icon_color" />
+                app:tint="@color/bottom_nav_colors" />
         </LinearLayout>
 
         <!-- Reservas -->
@@ -467,7 +467,7 @@
                 android:layout_height="22dp"
                 android:src="@drawable/ic_calendar"
                 android:contentDescription="Reservas"
-                app:tint="@color/bottom_nav_icon_color" />
+                app:tint="@color/bottom_nav_colors" />
         </LinearLayout>
 
         <!-- Salas -->
@@ -487,7 +487,7 @@
                 android:layout_height="22dp"
                 android:src="@drawable/ic_signpost"
                 android:contentDescription="Salas"
-                app:tint="@color/bottom_nav_icon_color" />
+                app:tint="@color/bottom_nav_colors" />
         </LinearLayout>
 
         <!-- Perfil -->
@@ -507,7 +507,7 @@
                 android:layout_height="22dp"
                 android:src="@drawable/ic_person"
                 android:contentDescription="Perfil"
-                app:tint="@color/bottom_nav_icon_color" />
+                app:tint="@color/bottom_nav_colors" />
         </LinearLayout>
 
     </LinearLayout>

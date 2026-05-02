@@ -10,12 +10,13 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import coil.load
 import com.example.teste3.R
+import com.example.teste3.BookRepository
 import com.example.teste3.databinding.ActivityHomeBinding
 import com.example.teste3.detalhe_livro.BookDetailActivity
 import com.example.teste3.login.ChatbotActivity
 import com.example.teste3.perfil.PrincipalPerfil as PerfilActivity
 import com.example.teste3.salas.Disponivel
-import com.example.teste3.mapa.MapaBibliotecaActivity
+import com.example.teste3.mapa.MapaPrincipal
 
 data class Book(
     val id: Int,
@@ -53,13 +54,10 @@ class HomeActivity : AppCompatActivity() {
         }
 
         setupBottomNav()
-        loadBooks(sampleBooks())
+        loadBooks(BookRepository.getAll())
     }
 
-    override fun onResume() {
-        super.onResume()
-        setNavAtivo("home")
-    }
+
 
     private fun setupBottomNav() {
         setNavAtivo("home")
@@ -74,7 +72,7 @@ class HomeActivity : AppCompatActivity() {
             startActivity(Intent(this, Disponivel::class.java))
         }
         findViewById<LinearLayout>(R.id.navSalas).setOnClickListener {
-            startActivity(Intent(this, MapaBibliotecaActivity::class.java))
+            startActivity(Intent(this, MapaPrincipal::class.java))
         }
         findViewById<LinearLayout>(R.id.navPerfil).setOnClickListener {
             startActivity(Intent(this, PerfilActivity::class.java))
@@ -92,6 +90,12 @@ class HomeActivity : AppCompatActivity() {
                 else android.graphics.Color.parseColor("#888888")
             )
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        setNavAtivo("home")
+        loadBooks(BookRepository.getAll())
     }
 
     private fun loadBooks(books: List<Book>) {
@@ -134,33 +138,4 @@ class HomeActivity : AppCompatActivity() {
         }
     }
 
-    private fun sampleBooks(): List<Book> = listOf(
-        Book(1, "Entendendo Algoritmos", "Aditya Y. Bhargava",
-            "android.resource://com.example.teste3/drawable/capa_entendendo_algoritmos",
-            year = "2017", genre = "Tecnologia"),
-        Book(2, "Pai Rico Pai Pobre", "Robert T. Kiyosaki",
-            "android.resource://com.example.teste3/drawable/capa_pai_rico_pai_pobre",
-            year = "2000", genre = "Finanças"),
-        Book(3, "É Assim Que Acaba", "Colleen Hoover",
-            "android.resource://com.example.teste3/drawable/capa_assim_que_acaba",
-            year = "2016", genre = "Romance"),
-        Book(4, "Netter Atlas de Anatomia", "Frank H. Netter",
-            "android.resource://com.example.teste3/drawable/capa_anatomia_humana",
-            year = "2015", genre = "Medicina"),
-        Book(5, "Introdução à Nutrição", "Vários Autores",
-            "android.resource://com.example.teste3/drawable/capa_introducao_a_nutricao",
-            year = "2018", genre = "Nutrição"),
-        Book(6, "Fisiologia Humana", "Dee Unglaub Silverthorn",
-            "android.resource://com.example.teste3/drawable/capa_fisiologia_humana",
-            year = "2017", genre = "Medicina"),
-        Book(7, "Fundamentos de Enfermagem", "Patricia A. Potter",
-            "android.resource://com.example.teste3/drawable/capa_fundamentos_de_enfermagem",
-            year = "2018", genre = "Enfermagem"),
-        Book(8, "Código Limpo", "Robert C. Martin",
-            "https://covers.openlibrary.org/b/isbn/9788576082675-L.jpg",
-            year = "2009", genre = "Tecnologia"),
-        Book(9, "Django Essencial", "Vários Autores",
-            "android.resource://com.example.teste3/drawable/capa_django_essencial",
-            year = "2020", genre = "Tecnologia"),
-    )
 }

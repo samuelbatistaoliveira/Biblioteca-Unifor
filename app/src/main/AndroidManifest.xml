@@ -83,8 +83,17 @@
 
         <!-- Mapa -->
         <activity
-            android:name=".mapa.MapaBibliotecaActivity"
+            android:name=".mapa.MapaPrincipal"
             android:exported="false" />
+        <activity android:name=".mapa.MapaLivroActivity" />
+
+
+        <activity android:name=".admin.AluguelAdmin" />
+        <activity android:name=".admin.solicitacao" />
+        <activity android:name=".admin.Devolucao_admin" />
+        <activity android:name=".salas.CheckAdmin" />
+
+
 
 
     </application>

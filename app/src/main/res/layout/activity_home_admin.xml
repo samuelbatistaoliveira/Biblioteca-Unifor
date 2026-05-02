@@ -120,16 +120,7 @@
         </androidx.core.widget.NestedScrollView>
 
         <!-- ── Bottom Navigation ── -->
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/bottomNavigation"
-            android:layout_width="match_parent"
-            android:layout_height="64dp"
-            android:background="#121212"
-            android:elevation="20dp"
-            app:itemIconTint="@color/bottom_nav_colors"
-            app:itemTextColor="@color/bottom_nav_colors"
-            app:labelVisibilityMode="unlabeled"
-            app:menu="@menu/bottom_nav_menu" />
+        <include layout="@layout/bottom_nav_admin" />
 
 
 

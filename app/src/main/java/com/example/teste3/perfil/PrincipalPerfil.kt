@@ -36,7 +36,7 @@ class PrincipalPerfil : AppCompatActivity() {
                     true
                 }
                 R.id.nav_categories -> {
-                    startActivity(Intent(this, com.example.teste3.mapa.MapaBibliotecaActivity::class.java))
+                    startActivity(Intent(this, com.example.teste3.mapa.MapaPrincipal::class.java))
                     true
                 }
                 R.id.nav_profile -> true

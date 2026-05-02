@@ -11,8 +11,8 @@ import com.example.teste3.R
 import com.example.teste3.databinding.ActivityAluguelBinding
 import com.example.teste3.home_aluno.HomeActivity
 import com.example.teste3.login.ChatbotActivity
-import com.example.teste3.mapa.MapaBibliotecaActivity
 import com.example.teste3.salas.Disponivel
+import com.example.teste3.mapa.MapaLivroActivity
 import com.example.teste3.perfil.PrincipalPerfil as PerfilActivity
 
 class AluguelActivity : AppCompatActivity() {
@@ -81,7 +81,7 @@ class AluguelActivity : AppCompatActivity() {
 
         // ✅ Salas → MapaBibliotecaActivity
         binding.navSalas.setOnClickListener {
-            startActivity(Intent(this, MapaBibliotecaActivity::class.java))
+            val intent = Intent(this, MapaLivroActivity::class.java)
         }
     }
 

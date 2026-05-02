@@ -13,6 +13,10 @@ import com.example.teste3.R
 import com.example.teste3.databinding.ActivityHomeAdminBinding
 import com.example.teste3.home_aluno.Book
 import com.example.teste3.login.ChatbotActivity
+import android.widget.LinearLayout
+import androidx.core.widget.ImageViewCompat
+import androidx.core.content.ContextCompat
+import android.content.res.ColorStateList
 
 class HomeAdminActivity : AppCompatActivity() {
 
@@ -32,6 +36,11 @@ class HomeAdminActivity : AppCompatActivity() {
         binding.fabAddBook.setOnClickListener {
             startActivity(Intent(this, CadastroLivroActivity::class.java))
         }
+        ImageViewCompat.setImageTintList(
+            findViewById(R.id.iconHome),
+            ColorStateList.valueOf(ContextCompat.getColor(this, R.color.gold))
+        )
+
 
         setupBottomNav()
         loadBooks(BookRepository.getAll())
@@ -43,30 +52,34 @@ class HomeAdminActivity : AppCompatActivity() {
     }
 
     private fun setupBottomNav() {
-        binding.bottomNavigation.selectedItemId = R.id.nav_home
+        findViewById<LinearLayout>(R.id.navHome).setOnClickListener {
+            // já está na home
+        }
 
-        binding.bottomNavigation.setOnItemSelectedListener { item ->
-            when (item.itemId) {
-                R.id.nav_chat -> {
-                    true
-                }
-                R.id.nav_home -> true
-                R.id.nav_calendar -> {
-                    startActivity(Intent(this, com.example.teste3.salas.AdmSalas::class.java))
-                    true
-                }
-                R.id.nav_categories -> {
-                    Toast.makeText(this, "Categorias", Toast.LENGTH_SHORT).show()
-                    true
-                }
-                R.id.nav_profile -> {
-                    startActivity(Intent(this, perfiladm::class.java))
-                    true
-                }
-                else -> false
-            }
+        findViewById<LinearLayout>(R.id.navChat).setOnClickListener {
+            startActivity(Intent(this, AluguelAdmin::class.java))
+        }
+
+
+
+        findViewById<LinearLayout>(R.id.navCalendar).setOnClickListener {
+            startActivity(Intent(this, com.example.teste3.salas.AdmSalas::class.java))
+        }
+
+        findViewById<LinearLayout>(R.id.navCategories).setOnClickListener {
+            startActivity(Intent(this, com.example.teste3.mapa.MapaPrincipal::class.java))
+        }
+
+        findViewById<LinearLayout>(R.id.navProfile).setOnClickListener {
+            startActivity(Intent(this, perfiladm::class.java))
+        }
+        findViewById<LinearLayout>(R.id.navCategories).setOnClickListener {
+            startActivity(Intent(this, com.example.teste3.mapa.MapaPrincipal::class.java).apply {
+                putExtra("origem", "admin")
+            })
         }
     }
+
 
     private fun loadBooks(books: List<Book>) {
         val grid = binding.gridBooks

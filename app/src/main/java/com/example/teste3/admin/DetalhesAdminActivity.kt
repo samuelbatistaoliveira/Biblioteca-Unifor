@@ -2,9 +2,12 @@ package com.example.teste3.admin
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.ImageView
+import android.widget.LinearLayout
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import coil.load
-import com.example.teste3.BotaoNav.BottomNavHelper
+import com.example.teste3.R
 import com.example.teste3.databinding.ActivityDetalhesAdminBinding
 
 class DetalhesAdminActivity : AppCompatActivity() {
@@ -66,30 +69,48 @@ class DetalhesAdminActivity : AppCompatActivity() {
                 .show()
         }
 
-        setupBottomNav()
+        // ✅ Botão Localizar Livro
+        binding.btnLocalizar.setOnClickListener {
+            Toast.makeText(this, "Localizando \"$title\" na biblioteca...", Toast.LENGTH_SHORT).show()
+            // Adicione a navegação para a tela de mapa/localização aqui
+        }
+
+        setNavAtivo("home")
+
+        binding.bottomNav.navChat.setOnClickListener {
+            startActivity(Intent(this, AluguelAdmin::class.java))
+        }
+        binding.bottomNav.navHome.setOnClickListener {
+            startActivity(Intent(this, HomeAdminActivity::class.java).apply {
+                flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
+            })
+        }
+        binding.bottomNav.navCalendar.setOnClickListener {
+            startActivity(Intent(this, com.example.teste3.salas.AdmSalas::class.java))
+        }
+        binding.bottomNav.navCategories.setOnClickListener {
+            Toast.makeText(this, "Categorias", Toast.LENGTH_SHORT).show()
+        }
+        binding.bottomNav.navProfile.setOnClickListener {
+            startActivity(Intent(this, perfiladm::class.java))
+        }
     }
 
-    private fun setupBottomNav() {
-        BottomNavHelper.setup(
-            context         = this,
-            navChat         = binding.bottomNav.navChat,
-            navChatBg       = binding.bottomNav.navChatBg,
-            navHome         = binding.bottomNav.navHome,
-            navHomeBg       = binding.bottomNav.navHomeBg,
-            navCalendar     = binding.bottomNav.navCalendar,
-            navCalendarBg   = binding.bottomNav.navCalendarBg,
-            navCategories   = binding.bottomNav.navCategories,
-            navCategoriesBg = binding.bottomNav.navCategoriesBg,
-            navProfile      = binding.bottomNav.navProfile,
-            navProfileBg    = binding.bottomNav.navProfileBg,
-            activeItem      = BottomNavHelper.NavItem.HOME
+    private fun setNavAtivo(ativo: String) {
+        data class NavItem(val layout: LinearLayout, val icon: ImageView)
+
+        val itens = mapOf(
+            "chat"       to NavItem(binding.bottomNav.navChat,       binding.bottomNav.iconChat),
+            "home"       to NavItem(binding.bottomNav.navHome,       binding.bottomNav.iconHome),
+            "calendar"   to NavItem(binding.bottomNav.navCalendar,   binding.bottomNav.iconCalendar),
+            "categories" to NavItem(binding.bottomNav.navCategories, binding.bottomNav.iconCategories),
+            "profile"    to NavItem(binding.bottomNav.navProfile,    binding.bottomNav.iconProfile)
         )
-        binding.bottomNav.navChat.setOnClickListener { }
-        binding.bottomNav.navHome.setOnClickListener {
-            val intent = Intent(this, HomeAdminActivity::class.java).apply {
-                flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
-            }
-            startActivity(intent)
+
+        itens.forEach { (item, nav) ->
+            val selecionado = item == ativo
+            nav.layout.isSelected = selecionado
+            nav.icon.isSelected   = selecionado
         }
     }
 }

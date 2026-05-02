@@ -55,7 +55,7 @@ class Disponivel : AppCompatActivity() {
             // já estamos na tela de salas
         }
         findViewById<LinearLayout>(R.id.navSalas).setOnClickListener {
-            startActivity(Intent(this, com.example.teste3.mapa.MapaBibliotecaActivity::class.java))
+            startActivity(Intent(this, com.example.teste3.mapa.MapaPrincipal::class.java))
         }
         findViewById<LinearLayout>(R.id.navPerfil).setOnClickListener {
             startActivity(Intent(this, PerfilActivity::class.java))

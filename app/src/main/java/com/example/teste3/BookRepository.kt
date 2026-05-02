@@ -48,4 +48,9 @@ object BookRepository {
         val index = books.indexOfFirst { it.title == oldTitle }
         if (index != -1) books[index] = updatedBook
     }
+
+    fun updateStatus(title: String, newStatus: String) {
+        val index = books.indexOfFirst { it.title == title }
+        if (index != -1) books[index] = books[index].copy(status = newStatus)
+    }
 }

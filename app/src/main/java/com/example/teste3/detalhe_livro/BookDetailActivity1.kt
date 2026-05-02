@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import coil.load
+import com.example.teste3.BookRepository
 import com.example.teste3.R
 import com.example.teste3.aluguel_livros.AluguelActivity
 import com.example.teste3.databinding.ActivityBookDetailBinding
@@ -52,6 +53,7 @@ class BookDetailActivity : AppCompatActivity() {
                 Toast.makeText(this, "Livro indisponível para aluguel", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
+            BookRepository.updateStatus(title, "Alugado")
             startActivity(Intent(this, AluguelActivity::class.java).apply {
                 putExtra("book_title",  title)
                 putExtra("book_author", author)
@@ -61,8 +63,6 @@ class BookDetailActivity : AppCompatActivity() {
                 putExtra("book_status", "Alugado")
             })
         }
-
-
 
         binding.navHome.setOnClickListener {
             startActivity(Intent(this, HomeActivity::class.java).apply {
@@ -78,17 +78,26 @@ class BookDetailActivity : AppCompatActivity() {
             startActivity(Intent(this, com.example.teste3.salas.Disponivel::class.java))
         }
 
-        binding.navSalas.setOnClickListener {
-            Toast.makeText(this, "Salas", Toast.LENGTH_SHORT).show()
-        }
-
         binding.navPerfil.setOnClickListener {
             startActivity(Intent(this, PerfilActivity::class.java))
         }
+
         binding.navSalas.setOnClickListener {
-            startActivity(Intent(this, com.example.teste3.mapa.MapaBibliotecaActivity::class.java))
+            startActivity(Intent(this, com.example.teste3.mapa.MapaPrincipal::class.java))
         }
-    }
+
+        binding.btnLocalizar.setOnClickListener {
+            val intent = Intent(this, com.example.teste3.mapa.MapaLivroActivity::class.java).apply {
+                putExtra("andar", 0)
+                putExtra("ponto_x", 0.5f)
+                putExtra("ponto_y", 0.5f)
+                putExtra("localizacao_texto", "Seção: $title")
+            }
+            startActivity(intent)
+        } // ✅ fecha o setOnClickListener
+
+    } // ✅ fecha o onCreate
+
     private fun setNavAtivo(ativo: String) {
         val itens = mapOf(
             "chat"     to Pair(binding.navChat,     binding.iconChat),

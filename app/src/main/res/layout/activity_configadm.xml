@@ -349,14 +349,7 @@
                         </LinearLayout>
                     </LinearLayout>
 
-                    <ImageView
-                        android:layout_width="18dp"
-                        android:layout_height="18dp"
-                        android:layout_centerVertical="true"
-                        android:layout_alignParentEnd="true"
-                        android:src="@drawable/ic_chevron_right"
-                        app:tint="#C8C8C8"
-                        app:contentDescription="Abrir" />
+
                 </RelativeLayout>
 
             </LinearLayout>

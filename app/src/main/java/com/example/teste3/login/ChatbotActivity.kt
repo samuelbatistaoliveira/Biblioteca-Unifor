@@ -81,7 +81,7 @@ class ChatbotActivity : AppCompatActivity() {
         }
 
         binding.navSalas.setOnClickListener {
-            startActivity(Intent(this, com.example.teste3.mapa.MapaBibliotecaActivity::class.java))
+            startActivity(Intent(this, com.example.teste3.mapa.MapaPrincipal::class.java))
         }
     }
 

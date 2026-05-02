@@ -1,13 +1,14 @@
 package com.example.teste3.salas
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.LinearLayout
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.example.teste3.R
+import com.example.teste3.admin.AluguelAdmin
+import com.example.teste3.admin.HomeAdminActivity
+import com.example.teste3.admin.perfiladm
 
 class AdmSalas : AppCompatActivity() {
 
@@ -23,22 +24,35 @@ class AdmSalas : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContentView(R.layout.activity_admsalas)
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
+        setNavAtivo("reservas")
+
+        findViewById<LinearLayout>(R.id.navChat)?.setOnClickListener {
+            startActivity(Intent(this, AluguelAdmin::class.java))
+        }
+        findViewById<LinearLayout>(R.id.navHome)?.setOnClickListener {
+            startActivity(Intent(this, HomeAdminActivity::class.java).apply {
+                flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
+            })
+        }
+        findViewById<LinearLayout>(R.id.navReservas)?.setOnClickListener {
+            // já está nesta tela
+        }
+        findViewById<LinearLayout>(R.id.navSalas)?.setOnClickListener {
+            // já está nesta tela
+        }
+        findViewById<LinearLayout>(R.id.navPerfil)?.setOnClickListener {
+            startActivity(Intent(this, perfiladm::class.java))
         }
 
-        setNavAtivo("salas")
+        val irParaCheck = { startActivity(Intent(this, CheckAdmin::class.java)) }
 
-        navItens.forEach { (item, nav) ->
-            findViewById<LinearLayout>(nav.layoutId)?.setOnClickListener {
-                setNavAtivo(item)
-            }
-        }
+        findViewById<LinearLayout>(R.id.cardSalaA)?.setOnClickListener { irParaCheck() }
+        findViewById<LinearLayout>(R.id.cardSalaB)?.setOnClickListener { irParaCheck() }
+        findViewById<LinearLayout>(R.id.cardSalaC)?.setOnClickListener { irParaCheck() }
+        findViewById<LinearLayout>(R.id.cardSalaD)?.setOnClickListener { irParaCheck() }
+        findViewById<LinearLayout>(R.id.cardSalaE)?.setOnClickListener { irParaCheck() }
     }
 
     private fun setNavAtivo(ativo: String) {

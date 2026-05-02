@@ -221,6 +221,22 @@
                     app:cornerRadius="14dp"
                     app:elevation="4dp" />
 
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnLocalizar"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:text="📍 Localizar Livro"
+                    android:textSize="15sp"
+                    android:textColor="#2D2D2D"
+                    android:textStyle="bold"
+                    android:textAllCaps="false"
+                    android:stateListAnimator="@null"
+                    app:backgroundTint="@null"
+                    android:background="@drawable/button_outline_gold"
+                    app:cornerRadius="14dp" />
+
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

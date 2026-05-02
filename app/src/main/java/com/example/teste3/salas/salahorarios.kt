@@ -13,7 +13,7 @@ import androidx.core.view.WindowInsetsCompat
 import com.example.teste3.R
 import com.example.teste3.home_aluno.HomeActivity
 import com.example.teste3.login.ChatbotActivity
-import com.example.teste3.mapa.MapaBibliotecaActivity
+import com.example.teste3.mapa.MapaPrincipal
 import com.example.teste3.perfil.PrincipalPerfil as PerfilActivity
 
 class salahorarios : AppCompatActivity() {
@@ -49,7 +49,7 @@ class salahorarios : AppCompatActivity() {
             startActivity(Intent(this, HomeActivity::class.java))
         }
         findViewById<LinearLayout>(R.id.navSalas).setOnClickListener {
-            startActivity(Intent(this, MapaBibliotecaActivity::class.java))
+            startActivity(Intent(this, MapaPrincipal::class.java))
         }
         findViewById<LinearLayout>(R.id.navReservas).setOnClickListener {
             startActivity(Intent(this, Disponivel::class.java))

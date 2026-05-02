@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="64dp"
     android:orientation="horizontal"
-    android:background="#1A1A2E"
+    android:background="#121212"
     android:baselineAligned="false"
     android:elevation="8dp"
     android:gravity="center">
@@ -28,14 +28,15 @@
             android:layout_width="56dp"
             android:layout_height="32dp"
             android:gravity="center"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:background="@drawable/bg_nav_inactive">
 
             <ImageView
                 android:id="@+id/iconChat"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:src="@drawable/ic_menu_hamburger"
-                app:tint="#FFFFFF"
+                app:tint="@color/bottom_nav_colors"
                 android:contentDescription="Gerenciar" />
 
         </LinearLayout>
@@ -59,14 +60,15 @@
             android:layout_width="56dp"
             android:layout_height="32dp"
             android:gravity="center"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:background="@drawable/bg_nav_inactive">
 
             <ImageView
                 android:id="@+id/iconHome"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:src="@drawable/ic_home"
-                app:tint="#FFFFFF"
+                app:tint="@color/bottom_nav_colors"
                 android:contentDescription="Home" />
 
         </LinearLayout>
@@ -90,14 +92,15 @@
             android:layout_width="56dp"
             android:layout_height="32dp"
             android:gravity="center"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:background="@drawable/bg_nav_inactive">
 
             <ImageView
                 android:id="@+id/iconCalendar"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:src="@drawable/ic_calendar"
-                app:tint="#FFFFFF"
+                app:tint="@color/bottom_nav_colors"
                 android:contentDescription="Calendário" />
 
         </LinearLayout>
@@ -121,14 +124,15 @@
             android:layout_width="56dp"
             android:layout_height="32dp"
             android:gravity="center"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:background="@drawable/bg_nav_inactive">
 
             <ImageView
                 android:id="@+id/iconCategories"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:src="@drawable/ic_signpost"
-                app:tint="#FFFFFF"
+                app:tint="@color/bottom_nav_colors"
                 android:contentDescription="Categorias" />
 
         </LinearLayout>
@@ -152,14 +156,15 @@
             android:layout_width="56dp"
             android:layout_height="32dp"
             android:gravity="center"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:background="@drawable/bg_nav_inactive">
 
             <ImageView
                 android:id="@+id/iconProfile"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:src="@drawable/ic_person"
-                app:tint="#FFFFFF"
+                app:tint="@color/bottom_nav_colors"
                 android:contentDescription="Perfil" />
 
         </LinearLayout>

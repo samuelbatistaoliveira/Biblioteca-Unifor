@@ -16,7 +16,6 @@
         android:elevation="20dp"
         android:orientation="horizontal">
 
-        <!-- Menu (ícone hamburguer) -->
         <LinearLayout
             android:id="@+id/navMenu"
             android:layout_width="0dp"
@@ -32,10 +31,9 @@
                 android:layout_width="22dp"
                 android:layout_height="22dp"
                 android:src="@drawable/ic_menu"
-                app:tint="@color/bottom_nav_icon_color" />
+                app:tint="@color/bottom_nav_colors" />
         </LinearLayout>
 
-        <!-- Home -->
         <LinearLayout
             android:id="@+id/navHome"
             android:layout_width="0dp"
@@ -51,10 +49,9 @@
                 android:layout_width="22dp"
                 android:layout_height="22dp"
                 android:src="@drawable/ic_home"
-                app:tint="@color/bottom_nav_icon_color" />
+                app:tint="@color/bottom_nav_colors" />
         </LinearLayout>
 
-        <!-- Calendário -->
         <LinearLayout
             android:id="@+id/navCalendar"
             android:layout_width="0dp"
@@ -70,10 +67,9 @@
                 android:layout_width="22dp"
                 android:layout_height="22dp"
                 android:src="@drawable/ic_calendar"
-                app:tint="@color/bottom_nav_icon_color" />
+                app:tint="@color/bottom_nav_colors" />
         </LinearLayout>
 
-        <!-- Signpost -->
         <LinearLayout
             android:id="@+id/navSignpost"
             android:layout_width="0dp"
@@ -89,10 +85,9 @@
                 android:layout_width="22dp"
                 android:layout_height="22dp"
                 android:src="@drawable/ic_signpost"
-                app:tint="@color/bottom_nav_icon_color" />
+                app:tint="@color/bottom_nav_colors" />
         </LinearLayout>
 
-        <!-- Perfil -->
         <LinearLayout
             android:id="@+id/navPerfil"
             android:layout_width="0dp"
@@ -108,7 +103,7 @@
                 android:layout_width="22dp"
                 android:layout_height="22dp"
                 android:src="@drawable/ic_person"
-                app:tint="@color/bottom_nav_icon_color" />
+                app:tint="@color/bottom_nav_colors" />
         </LinearLayout>
 
     </LinearLayout>
@@ -156,7 +151,6 @@
                         android:textSize="26sp"
                         android:textStyle="bold" />
 
-                    <!-- Badge diferenciador de Admin -->
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -217,7 +211,6 @@
             </RelativeLayout>
 
             <!-- ── CARD DE USUÁRIO ADMIN ── -->
-            <!-- Diferencial: borda dourada mais grossa + fundo levemente mais escuro -->
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -234,7 +227,6 @@
                     android:orientation="vertical"
                     android:focusable="false">
 
-                    <!-- Faixa dourada no topo do card -->
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="4dp"
@@ -262,7 +254,6 @@
                                 app:civ_border_color="#C8A96E"
                                 app:civ_border_width="3dp" />
 
-                            <!-- Ícone de escudo/admin sobre o avatar -->
                             <TextView
                                 android:layout_width="20dp"
                                 android:layout_height="20dp"
@@ -306,7 +297,6 @@
                                 android:textIsSelectable="false"
                                 android:focusable="false" />
 
-                            <!-- Badge admin diferente do aluno -->
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -325,8 +315,7 @@
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
-            <!-- ── ESTATÍSTICAS DO SISTEMA ── -->
-            <!-- Diferencial: métricas de gestão, não de aluno -->
+            <!-- ── ESTATÍSTICAS ── -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -447,7 +436,6 @@
 
             </LinearLayout>
 
-            <!-- ── SEÇÃO: AÇÕES RÁPIDAS DE ADMINISTRAÇÃO ── -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -460,7 +448,7 @@
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
-            <!-- ── AÇÃO 2: GERENCIAR ACERVO ── -->
+            <!-- ACERVO -->
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardGerenciarAcervo"
                 android:layout_width="match_parent"
@@ -534,7 +522,7 @@
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
-            <!-- ── AÇÃO 3: VER ATRASOS ── -->
+            <!-- ATRASOS -->
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardVerAtrasos"
                 android:layout_width="match_parent"
@@ -598,7 +586,6 @@
                             android:focusable="false" />
                     </LinearLayout>
 
-                    <!-- Badge com contador de atrasos -->
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -623,7 +610,7 @@
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
-            <!-- ── AVISO ADMIN ── -->
+            <!-- AVISO ADMIN -->
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
